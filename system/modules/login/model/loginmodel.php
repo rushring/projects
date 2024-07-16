@@ -11,6 +11,25 @@ class loginmodule{
         
     }
     
+    function loginLog($log_ip,$user_id){ // creating a function with two parameters
+        
+        $con = $GLOBALS['con'];
+        $sql = "INSERT INTO login_log VALUES ('', NOW(), '', '$log_ip', 'In', '$user_id')";
+        $result = $con->query($sql);
+        $login_log_id = $con -> insert_id;
+        return $login_log_id;
+        
+    }
+    
+        function updateLogout($login_log_id){ // creating a function with two parameters
+        
+        $con = $GLOBALS['con'];
+        $sql = "UPDATE login_log SET logout_date_time = NOW(), login_status = 'OUT' WHERE login_log_id='$login_log_id'";
+        $result = $con->query($sql);
+        $login_log_id = $con -> insert_id;
+        return $login_log_id;
+        
+    }
 }
 
 ?>
